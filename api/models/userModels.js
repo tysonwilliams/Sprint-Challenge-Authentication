@@ -26,12 +26,12 @@ UserSchema.pre('save', function(next) {
   });
 });
 
-UserSchema.methods.checkPassword = function(plainTextPW, callBack) {
+UserSchema.methods.checkPassword = function(plainTextPW, cb) {
   // https://github.com/kelektiv/node.bcrypt.js#usage
   // Fill this method in with the Proper password comparing, bcrypt.compare()
   // Your controller will be responsible for sending the information here for password comparison
   // Once you have the user, you'll need to pass the encrypted pw and the plaintext pw to the compare function
-  bcrypt.compare(plainTextPW, this.hashedPW, (err, isMatch) => {
+  bcrypt.compare(plainTextPW, this.password, (err, isMatch) => {
     if (err) return cb(err);
     cb(null, isMatch);
   });
