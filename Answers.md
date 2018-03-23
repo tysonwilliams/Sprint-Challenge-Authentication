@@ -7,12 +7,13 @@
   * bcrypt is middleware hashing function used to hash / encrypt passwords.
   * JWT stands for JSON Web Tokens. JWTs are an open standard of encrpyting and passing data via JSON format.
 
-1.  What does bcrypt do in order to prevent attacks?
+2.  What does bcrypt do in order to prevent attacks?
 
   * bcrypt using hashing and also adds `Salt`, or timed response, to the hashing portion of the password. Depending on the Salt, this can signficanltly blunt malicious password hacking attempts, through Rainbow Table attacks, by greatly slowing down the ability to get a complete Rainbow Table of hashed passwords.
 
-1.  What are the three parts of the JSON Web Token?
+3.  What are the three parts of the JSON Web Token?
   * JWTs consist of three sections:
-    1. Header, which has two parts: type and algorithm used for encrypting. Example: `{ "typ": "JWT", "alg": "HS256" }`
+    1. Header, which has two parts: type and algorithm used for encrypting. Example:
+    `{ "typ": "JWT", "alg": "HS256" }`
     2. Payload, the main data being passed
-    3. Signature, a combination of these hashed components: header, payload, secret
+    3. Signature, a combination of these hashed components: header, payload, and secret
