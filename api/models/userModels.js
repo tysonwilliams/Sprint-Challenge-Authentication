@@ -9,7 +9,7 @@ const UserSchema = Schema({
   // username: required, unique and lowercase
   // password: required
   username: { type: String, required: true, unique: true, lowercase: true, },
-  passwordHash: { type: String, required: true, },
+  password: { type: String, required: true, },
 });
 
 UserSchema.pre('save', function(next) {
@@ -18,10 +18,10 @@ UserSchema.pre('save', function(next) {
   // if there is an error here you'll need to handle it by calling next(err);
   // Once the password is encrypted, call next() so that your userController and create a user
   const user = this;
-  if (!user.isModified('passwordHash')) return next();
-  bcrypt.hash(passwordHash, SALT_ROUNDS, (err, hash) => {
-    if (err) return next(error);
-    user.passwordHash = hash;
+  if (!user.isModified('password')) return next();
+  bcrypt.hash(user.password, SALT_ROUNDS, (err, hash) => {
+    if (err) return next(err);
+    user.password = hash;
     next();
   });
 });
